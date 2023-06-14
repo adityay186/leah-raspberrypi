@@ -40,7 +40,7 @@ async def send_telegram_message(message):
     bot = telegram.Bot(token=bot_token)
 
     # Send the message
-    await bot.send_message(chat_id=chat_id, text=message)
+    await bot.send_message(chat_id=chat_id, text=message, timeout=10)
 
     print("Telegram Message Delivered Successfully..")
 

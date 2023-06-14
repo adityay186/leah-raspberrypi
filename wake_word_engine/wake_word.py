@@ -7,12 +7,14 @@ import os
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
 sys.path.append("/home/leah/Documents/leah-final/intent_engine")
 sys.path.append("/home/leah/Documents/leah-final/skill_handle")
+sys.path.append("/home/aditya/Documents/leah-raspberrypi/tools")
 
 from intent import get_intent
 from skill_handler import process_intent
 from googleTTS import GoogleTTS
 import speech_recognition as sr
 from playsound import playsound
+from color_print import print_green
 
 def detect_wake_word():
     porcupine = None
@@ -47,7 +49,7 @@ def detect_wake_word():
             keyword_index = porcupine.process(pcm)
 
             if keyword_index >= 0:
-                print("Wake Word Detected")
+                print_green("WAKE WORD DETECTED!")
                 command = None
                 with sr.Microphone() as source:
                     print("Speak ...... ")
