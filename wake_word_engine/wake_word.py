@@ -1,16 +1,20 @@
-import struct
-import pyaudio
-import pvporcupine
-import sys
 import os
 
 os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
 
+print("IMPORTING REQUIRED LIBRARIES..")
+import struct
+import pyaudio
+import pvporcupine
+import sys
+
+print("IMPORTING MORE LIBRARIES..")
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
 sys.path.append("/home/leah/Documents/leah-final/intent_engine")
 sys.path.append("/home/leah/Documents/leah-final/skill_handle")
 sys.path.append("/home/leah/Documents/leah-final/tools")
 
+print("IMPORTING FUNCTIONS..")
 from intent import get_intent
 from skill_handler import process_intent
 from googleTTS import GoogleTTS
@@ -19,6 +23,7 @@ from playsound import playsound
 from color_print import print_green
 
 def detect_wake_word():
+    print("INITIALIZING WAKE WORD ENGINE..")
     porcupine = None
     pa = None
     audio_stream = None
@@ -43,6 +48,8 @@ def detect_wake_word():
                         format=pyaudio.paInt16,
                         input=True,
                         frames_per_buffer=porcupine.frame_length)
+
+        print("WAKE WORD ENGINE RUNNING..")
 
         while True:
             pcm = audio_stream.read(porcupine.frame_length)
