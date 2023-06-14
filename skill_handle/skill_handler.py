@@ -7,6 +7,8 @@ from skills import time
 from skills import search
 from skills import news
 from skills import send_message
+from skills import shazam
+from skills import cron_quotes
 
 # Mapping of intent types to corresponding skill functions
 intent_handlers = {
@@ -14,7 +16,9 @@ intent_handlers = {
     'time' : time.get_time,
     'search_summary' : search.searchSummary,
     'news' : news.playNews,
-    'send_message' : send_message.send_message
+    'send_message' : send_message.send_message,
+    'song_recognise' : shazam.what_song_is_this,
+    'daily_quotes' : cron_quotes.flip
     # Add more intent types and corresponding handlers as needed
 }
 

@@ -117,6 +117,59 @@ sent_message_intent = IntentBuilder("send_message")\
 engine.register_intent_parser(sent_message_intent)
 ##############################################################
 
+# SONG RECOGNITION INTENT
+song_recognition_keywords = [
+    "song",
+    "music"
+]
+
+for srk in song_recognition_keywords:
+    engine.register_entity(srk, "songRecognitionKeywords")
+
+song_recognition_keywords2 = [
+    "what",
+    "which",
+    "identify"
+]
+
+for srk2 in song_recognition_keywords2:
+    engine.register_entity(srk2, "songRecognitionKeywords2")
+
+song_recognition_intent = IntentBuilder("song_recognise")\
+    .require("songRecognitionKeywords")\
+    .require("songRecognitionKeywords2")\
+    .build()
+
+engine.register_intent_parser(song_recognition_intent)
+##############################################################
+
+# DAILY QUOTES STOP/START INTENT
+daily_quotes_keywords = [
+    "quotes",
+    "quote",
+    "motivation",
+    "daily motivation"
+]
+
+for dqk in daily_quotes_keywords:
+    engine.register_entity(dqk, "dailyQuotesKeywords")
+
+daily_quotes_action = [
+    "stop",
+    "start"
+]
+
+for dqa in daily_quotes_action:
+    engine.register_entity(dqa, "dailyQuotesAction")
+
+daily_quotes_intent = IntentBuilder("daily_quotes")\
+    .require("dailyQuotesKeywords")\
+    .require("dailyQuotesAction")\
+    .build()
+
+engine.register_intent_parser(daily_quotes_intent)
+##############################################################
+
 # intent definition ends
 
 def get_intent(command, sr_obj, tts_obj):
