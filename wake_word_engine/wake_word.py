@@ -7,7 +7,7 @@ import os
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
 sys.path.append("/home/leah/Documents/leah-final/intent_engine")
 sys.path.append("/home/leah/Documents/leah-final/skill_handle")
-sys.path.append("/home/aditya/Documents/leah-raspberrypi/tools")
+sys.path.append("/home/leah/Documents/leah-final/tools")
 
 from intent import get_intent
 from skill_handler import process_intent
