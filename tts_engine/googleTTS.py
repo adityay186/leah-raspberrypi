@@ -1,6 +1,10 @@
 from gtts import gTTS
 import os
 
+sys.path.append("/home/leah/Documents/leah-final/tools")
+
+from mpg123_player import play_mpg123
+
 class GoogleTTS:
     def __init__(self, text):
         print("::creating gTTS object::")
@@ -21,11 +25,11 @@ class GoogleTTS:
 
                 # Play the audio using os.system
                 print("::playing audio::")
-                os.system("mpg123 tts.mp3")
+                play_mpg123("tts.mp3")
 
             except Exception as e:
                 print("An error occurred:", str(e))
-                os.system("mpg123 something_went_wrong.mp3")
+                play_mpg123("something_went_wrong.mp3")
 
             finally:
                 # Remove the temporary audio file

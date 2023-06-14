@@ -1,8 +1,12 @@
 import os
 
-os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
+sys.path.append("/home/leah/Documents/leah-final/tools")
 
-os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/please_wait.mp3")
+from mpg123_player import play_mpg123
+
+play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
+
+play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/please_wait.mp3")
 
 print("IMPORTING REQUIRED LIBRARIES..")
 import struct
@@ -14,7 +18,6 @@ print("IMPORTING MORE LIBRARIES..")
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
 sys.path.append("/home/leah/Documents/leah-final/intent_engine")
 sys.path.append("/home/leah/Documents/leah-final/skill_handle")
-sys.path.append("/home/leah/Documents/leah-final/tools")
 
 print("IMPORTING FUNCTIONS..")
 from intent import get_intent
@@ -67,8 +70,7 @@ def detect_wake_word():
                 command = None
                 with sr.Microphone() as source:
                     print("Speak ...... ")
-                    #playsound("start_sound.mp3")
-                    os.system("mpg123 start_sound.mp3")
+                    play_mpg123("start_sound.mp3")
                     audio = r.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
