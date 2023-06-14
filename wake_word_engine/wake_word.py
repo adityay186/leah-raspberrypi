@@ -4,6 +4,8 @@ import pvporcupine
 import sys
 import os
 
+os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
+
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
 sys.path.append("/home/leah/Documents/leah-final/intent_engine")
 sys.path.append("/home/leah/Documents/leah-final/skill_handle")
