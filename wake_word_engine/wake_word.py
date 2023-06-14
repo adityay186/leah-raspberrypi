@@ -1,4 +1,5 @@
 import os
+import sys
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
 
@@ -12,7 +13,6 @@ print("IMPORTING REQUIRED LIBRARIES..")
 import struct
 import pyaudio
 import pvporcupine
-import sys
 
 print("IMPORTING MORE LIBRARIES..")
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
