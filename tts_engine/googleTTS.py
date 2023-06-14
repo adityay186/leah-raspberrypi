@@ -5,12 +5,9 @@ class GoogleTTS:
     def __init__(self, text):
         print("::creating gTTS object::")
         self.language = "en"
-        self.text = text if text is not None else ""
+        self.text = text
 
     def play(self):
-        if not self.text.strip():
-            return
-
         try:
             # Create a gTTS object
             tts = gTTS(text=self.text, lang=self.language)
