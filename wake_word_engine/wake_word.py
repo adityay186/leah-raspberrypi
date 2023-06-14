@@ -2,7 +2,7 @@ import os
 
 os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
 
-os.system("mpg123 /home/aditya/Documents/leah-raspberrypi/wake_word_engine/please_wait.mp3")
+os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/please_wait.mp3")
 
 print("IMPORTING REQUIRED LIBRARIES..")
 import struct
