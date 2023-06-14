@@ -2,6 +2,8 @@ import os
 
 os.system("mpg123 /home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
 
+os.system("mpg123 /home/aditya/Documents/leah-raspberrypi/wake_word_engine/please_wait.mp3")
+
 print("IMPORTING REQUIRED LIBRARIES..")
 import struct
 import pyaudio
@@ -21,6 +23,7 @@ from googleTTS import GoogleTTS
 import speech_recognition as sr
 from playsound import playsound
 from color_print import print_green
+from check_internet import check_internet_connection
 
 def detect_wake_word():
     print("INITIALIZING WAKE WORD ENGINE..")
@@ -48,6 +51,8 @@ def detect_wake_word():
                         format=pyaudio.paInt16,
                         input=True,
                         frames_per_buffer=porcupine.frame_length)
+        
+        check_internet_connection()
 
         print("WAKE WORD ENGINE RUNNING..")
 
