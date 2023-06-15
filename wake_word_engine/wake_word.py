@@ -1,4 +1,5 @@
 import sys
+import pprint
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
 
@@ -80,7 +81,7 @@ def detect_wake_word():
                     audio = r.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
-                    print(command)
+                    print("USER SAID ----------> ",command)
                 except sr.UnknownValueError:
                     er = "sorry, could not recognize"
                     tts.text = er
@@ -95,7 +96,7 @@ def detect_wake_word():
                     continue
 
                 intention = get_intent(command, r, tts)
-                print(intention)
+                pprint.pprint(intention)
                 res = process_intent(intention)
                 tts.text = res
                 print(res)

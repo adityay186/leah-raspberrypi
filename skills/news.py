@@ -65,6 +65,8 @@ def playNewsEnglish():
         print(audio_src)
 
         # Play the audio directly from the extracted URL
+
+        print("Fething and Playing the latest news..")
         playdirect.PlayDirectFromURL(audio_src).play()
 
     except KeyboardInterrupt:
