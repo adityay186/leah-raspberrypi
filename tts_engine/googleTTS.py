@@ -25,8 +25,9 @@ class GoogleTTS:
                 tts.save("tts.mp3")
 
                 # Play the audio using os.system
-                print("::playing TTS::")
+                print("::Playing TTS:: \n")
                 play_mpg123("tts.mp3")
+                print("Playing Done \n")
 
             except Exception as e:
                 print("An error occurred:", str(e))

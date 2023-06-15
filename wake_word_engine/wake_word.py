@@ -73,6 +73,7 @@ def detect_wake_word():
             keyword_index = porcupine.process(pcm)
 
             if keyword_index >= 0:
+                print("**********************************************")
                 print_green("WAKE WORD DETECTED!\n")
                 command = None
                 with mic as source:
