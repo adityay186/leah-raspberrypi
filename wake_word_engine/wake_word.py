@@ -76,12 +76,12 @@ def detect_wake_word():
                 print("**********************************************")
                 print_green("WAKE WORD DETECTED!\n")
                 command = None
-                ktic = sr.Recognizer()
+                new_sr = sr.Recognizer()
                 print("new recognizer : ", ktic)
                 with mic as source:
                     print("Speak ...... \n")
                     play_mpg123("start_sound.mp3")
-                    audio = r.listen(source, phrase_time_limit = 4)
+                    audio = new_sr.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
                     print("USER SAID ----------> ",command)
@@ -100,7 +100,7 @@ def detect_wake_word():
                     tts.play()
                     continue
 
-                intention = get_intent(command, r, tts)
+                intention = get_intent(command, new_sr, tts)
                 print("INTENT RESULT")
                 print("       ↓       ")
                 pprint.pprint(intention)
