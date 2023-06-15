@@ -77,6 +77,7 @@ def detect_wake_word():
                 print_green("WAKE WORD DETECTED!\n")
                 command = None
                 ktic = sr.Recognizer()
+                print("new recognizer : ", ktic)
                 with mic as source:
                     print("Speak ...... \n")
                     play_mpg123("start_sound.mp3")
