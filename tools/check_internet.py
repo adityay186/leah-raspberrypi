@@ -7,7 +7,7 @@ def check_internet_connection():
         try:
             # Attempt to create a socket and connect to www.google.com
             socket.create_connection(("www.google.com", 80))
-            print("Internet connection is available.")
+            print("Connected to the internet.")
             os.system("mpg123 /home/leah/Documents/leah-final/tools/connected_successfully.mp3")
             break  # Break out of the loop if connection is successful
         except OSError:

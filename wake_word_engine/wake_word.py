@@ -7,8 +7,10 @@ from color_print import print_green
 
 from mpg123_player import play_mpg123
 
+print_green("WELCOME TO LEAH")
 play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
 
+print_green("PLEASE WAIT, SYSTEM IS LOADING..")
 play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/please_wait.mp3")
 
 print_green("IMPORTING REQUIRED LIBRARIES..")
@@ -70,7 +72,7 @@ def detect_wake_word():
             keyword_index = porcupine.process(pcm)
 
             if keyword_index >= 0:
-                print_green("WAKE WORD DETECTED!")
+                print_green("WAKE WORD DETECTED!\n")
                 command = None
                 with sr.Microphone() as source:
                     print("Speak ...... ")

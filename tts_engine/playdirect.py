@@ -21,15 +21,15 @@ class PlayDirectFromURL:
 
     def play(self):
         start_time = time.time()
-        print(":: fetching audio data")
+        #print(":: fetching audio data")
         self.fetch_data_content()
-        print(":: creating audio file")
+        #print(":: creating audio file")
         self.create_audio_file()
         end_time = time.time()
 
         time_taken = end_time - start_time
 
-        print(":: playing audio")
+        #print(":: playing audio")
         self.play_audio_file()
 
         return time_taken
