@@ -1,4 +1,3 @@
-import os
 import sys
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
@@ -76,7 +75,7 @@ def detect_wake_word():
                 command = None
                 with sr.Microphone() as source:
                     print("Speak ...... ")
-                    play_mpg123("start_sound.mp3")
+                    #play_mpg123("start_sound.mp3")
                     audio = r.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
