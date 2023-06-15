@@ -83,6 +83,7 @@ def detect_wake_word():
                 try:
                     command = r.recognize_google(audio)
                     print("USER SAID ----------> ",command)
+                    play_mpg123("end_sound.mp3")
                     print("\n")
                 except sr.UnknownValueError:
                     er = "sorry, could not recognize"
