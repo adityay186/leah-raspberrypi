@@ -99,7 +99,7 @@ def detect_wake_word():
                 pprint.pprint(intention)
                 res = process_intent(intention)
                 tts.text = res
-                print(res)
+                print("Response ----------> ", res)
                 tts.play()
 
                 

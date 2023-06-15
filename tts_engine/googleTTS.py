@@ -8,7 +8,7 @@ from mpg123_player import play_mpg123
 
 class GoogleTTS:
     def __init__(self, text):
-        print("::creating gTTS object::")
+        #print("::creating gTTS object::")
         self.language = "en"
         self.text = text
 
@@ -21,11 +21,11 @@ class GoogleTTS:
                 tts = gTTS(text=self.text, lang=self.language)
 
                 # Save the speech as an MP3 file
-                print("::saving audio::")
+                #print("::saving audio::")
                 tts.save("tts.mp3")
 
                 # Play the audio using os.system
-                print("::playing audio::")
+                print("::playing TTS::")
                 play_mpg123("tts.mp3")
 
             except Exception as e:
