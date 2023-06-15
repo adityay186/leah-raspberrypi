@@ -64,7 +64,7 @@ def detect_wake_word():
         
         check_internet_connection()
 
-        print("WAKE WORD ENGINE RUNNING..")
+        print("WAKE WORD ENGINE RUNNING..\n")
 
         while True:
             pcm = audio_stream.read(porcupine.frame_length)
@@ -76,12 +76,13 @@ def detect_wake_word():
                 print_green("WAKE WORD DETECTED!\n")
                 command = None
                 with mic as source:
-                    print("Speak ...... ")
+                    print("Speak ...... \n")
                     play_mpg123("start_sound.mp3")
                     audio = r.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
                     print("USER SAID ----------> ",command)
+                    print("\n")
                 except sr.UnknownValueError:
                     er = "sorry, could not recognize"
                     tts.text = er
@@ -96,10 +97,14 @@ def detect_wake_word():
                     continue
 
                 intention = get_intent(command, r, tts)
+                print("INTENT RESULT")
+                print("       ↓       ")
                 pprint.pprint(intention)
+                print("\n")
                 res = process_intent(intention)
                 tts.text = res
                 print("Response ----------> ", res)
+                print("\n")
                 tts.play()
 
                 
