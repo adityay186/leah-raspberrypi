@@ -82,7 +82,7 @@ def detect_wake_word():
                     play_mpg123("start_sound.mp3")
                     audio = new_sr.listen(source, phrase_time_limit = 4)
                 try:
-                    command = r.recognize_google(audio)
+                    command = new_sr.recognize_google(audio)
                     print("USER SAID ----------> ",command)
                     play_mpg123("end_sound.mp3")
                     print("\n")
