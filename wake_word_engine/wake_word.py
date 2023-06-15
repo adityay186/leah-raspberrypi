@@ -3,29 +3,33 @@ import sys
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
 
+from color_print import print_green
+
 from mpg123_player import play_mpg123
 
 play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/leah_startup_sound.mp3")
 
 play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/please_wait.mp3")
 
-print("IMPORTING REQUIRED LIBRARIES..")
+print_green("IMPORTING REQUIRED LIBRARIES..")
 import struct
 import pyaudio
 import pvporcupine
 
-print("IMPORTING MORE LIBRARIES..")
+print_green("IMPORTING MORE LIBRARIES..")
 sys.path.append("/home/leah/Documents/leah-final/tts_engine")
 sys.path.append("/home/leah/Documents/leah-final/intent_engine")
 sys.path.append("/home/leah/Documents/leah-final/skill_handle")
 
-print("IMPORTING FUNCTIONS..")
+print_green("IMPORTING FUNCTIONS..")
+print_green("IMPORTING INTENT ENGINE..")
 from intent import get_intent
 from skill_handler import process_intent
+print_green("IMPORTING TTS ENGINE..")
 from googleTTS import GoogleTTS
+print_green("IMPORTING SPEECH RECOGNITION..")
 import speech_recognition as sr
 from playsound import playsound
-from color_print import print_green
 from check_internet import check_internet_connection
 
 def detect_wake_word():
