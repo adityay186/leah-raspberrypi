@@ -46,6 +46,7 @@ def detect_wake_word():
 
     tts = GoogleTTS("")
     r = sr.Recognizer()
+    mic = sr.Microphone()
 
     try:
         porcupine = pvporcupine.create(access_key = keys["adityay186@gmail.com"],
@@ -73,9 +74,9 @@ def detect_wake_word():
             if keyword_index >= 0:
                 print_green("WAKE WORD DETECTED!\n")
                 command = None
-                with sr.Microphone() as source:
+                with mic as source:
                     print("Speak ...... ")
-                    #play_mpg123("start_sound.mp3")
+                    play_mpg123("start_sound.mp3")
                     audio = r.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
