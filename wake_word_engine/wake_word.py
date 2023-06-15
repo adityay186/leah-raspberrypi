@@ -46,7 +46,6 @@ def detect_wake_word():
     }
 
     tts = GoogleTTS("")
-    r = sr.Recognizer()
     mic = sr.Microphone()
 
     try:
@@ -77,7 +76,7 @@ def detect_wake_word():
                 print_green("WAKE WORD DETECTED!\n")
                 command = None
                 new_sr = sr.Recognizer()
-                print("new recognizer : ", new_sr)
+                #print("new recognizer : ", new_sr)
                 with mic as source:
                     print("Speak ...... \n")
                     play_mpg123("start_sound.mp3")
