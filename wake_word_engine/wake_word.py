@@ -81,7 +81,7 @@ def detect_wake_word():
                 with mic as source:
                     print("Speak ...... \n")
                     play_mpg123("start_sound.mp3")
-                    audio = ktic.listen(source, phrase_time_limit = 4)
+                    audio = r.listen(source, phrase_time_limit = 4)
                 try:
                     command = r.recognize_google(audio)
                     print("USER SAID ----------> ",command)
