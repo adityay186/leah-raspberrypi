@@ -222,7 +222,7 @@ def predict_disease():
     df_test.loc[0] = np.array(list(preset.values()))
 
     # Load pre-trained model
-    clf = load("/home/aditya/Downloads/random_forest.joblib")
+    clf = load("/home/leah/Documents/leah-final/tools/random_forest.joblib")
     result = clf.predict(df_test)
     print(result)
     return result
