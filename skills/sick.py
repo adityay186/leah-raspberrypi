@@ -3,6 +3,11 @@ import re
 import numpy as np
 from joblib import load
 import speech_recognition as sr
+import sys
+
+sys.path.append("/home/leah/Documents/leah-final/tools")
+
+from tools import mpg123_player
 
 symptoms_dict = {
     'itching': 'itching',
@@ -219,7 +224,9 @@ def predict_disease(intent_dict):
     tts_obj.play()
 
     with mic as source:
+        mpg123_player.play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/start_sound.mp3")
         audio = sr_obj.listen(source, phrase_time_limit = 10)
+        mpg123_player.play_mpg123("/home/leah/Documents/leah-final/wake_word_engine/end_sound.mp3")
         input_text = sr_obj.recognize_google(audio)
         print("USER SAID : ", input_text)
         tts_obj.text = "okay, please wait while I use my experience to give a diagnosis. this will take some time"
