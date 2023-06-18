@@ -210,13 +210,18 @@ sr_obj = None
 
 def predict_disease(intent_dict):
     sr_obj = intent_dict['sr_obj']
+    tts_obj = intent_dict['tts_obj']
     mic = sr.Microphone()
     input_text = None
 
     with mic as source:
         print("Mention all symptoms : ")
+        tts_obj.text = "tell me how do you feel?"
+        tts_obj.play()
         audio = sr_obj.listen(source, phrase_time_limit = 7)
         input_text = sr_obj.recognize_google(audio)
+        tts_obj.text = "okay, please wait while I use my experience to give a diagnosis. this will take some time"
+        tts_obj.play()
     
     result = extract_symptoms(input_text)
 
@@ -237,4 +242,6 @@ def predict_disease(intent_dict):
     clf = load("/home/leah/Documents/leah-final/tools/random_forest.joblib")
     result = clf.predict(df_test)
     print(result)
+    tts_obj.text = "Based on the information provided, I have completed an initial assessment of your symptoms. It appears that the most likely diagnosis is, " + str(result[0]) + ". It's important to consult a healthcare professional for a confirmed diagnosis and appropriate treatment."
+    tts_obj.play()
     return result
