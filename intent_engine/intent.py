@@ -192,24 +192,24 @@ engine.register_intent_parser(doctor_intent)
 
 # HOME SECURITY INTENT
 home_security_keywords = [
-    "monitoring",
-    "monitor"
+    "monitor",
+    "monitoring"
 ]
 
 for hsk in home_security_keywords:
     engine.register_entity(hsk, "homeSecurityKeywords")
 
 home_security_action = [
-    "start",
-    "stop"
+    "stop",
+    "start"
 ]
 
 for hsa in home_security_action:
-    engine.register_entity(hsa, "action")
+    engine.register_entity(hsa, "homeSecurityAction")
 
 home_security_intent = IntentBuilder("home_security")\
     .require("homeSecurityKeywords")\
-    .optionally("action")\
+    .require("homeSecurityAction")\
     .build()
 
 engine.register_intent_parser(home_security_intent)
