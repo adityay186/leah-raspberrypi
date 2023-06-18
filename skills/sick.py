@@ -214,10 +214,11 @@ def predict_disease(intent_dict):
     mic = sr.Microphone()
     input_text = None
 
+    print("Mention all symptoms : ")
+    tts_obj.text = "tell me how do you feel?"
+    tts_obj.play()
+
     with mic as source:
-        print("Mention all symptoms : ")
-        tts_obj.text = "tell me how do you feel?"
-        tts_obj.play()
         audio = sr_obj.listen(source, phrase_time_limit = 10)
         input_text = sr_obj.recognize_google(audio)
         print("USER SAID : ", input_text)
