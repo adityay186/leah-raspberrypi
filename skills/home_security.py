@@ -4,8 +4,8 @@ import time
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
 
-from tools import mpg123_player
+from mpg123_player import play_mpg123
 
 while True:
-    mpg123_player.play_mpg123("/home/leah/Documents/leah-final/tools/connected_successfully.mp3")
+    play_mpg123("/home/leah/Documents/leah-final/tools/connected_successfully.mp3")
     time.sleep(3)
