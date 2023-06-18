@@ -110,7 +110,7 @@ def detect_wake_word():
                 pprint.pprint(intention)
                 print("\n")
                 if intention['intent_type'] == "home_security":
-                    if intention['action'] == "start":
+                    if intention['homeSecurityAction'] == "start":
                         if home_security_process is None or home_security_process.poll() is not None:
                             home_security_process = subprocess.Popen(['python', home_security_file])
                         else:
