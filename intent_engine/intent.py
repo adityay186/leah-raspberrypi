@@ -209,7 +209,7 @@ for hsa in home_security_action:
 
 home_security_intent = IntentBuilder("home_security")\
     .require("homeSecurityKeywords")\
-    .require("action")\
+    .optionally("action")\
     .build()
 
 engine.register_intent_parser(home_security_intent)
