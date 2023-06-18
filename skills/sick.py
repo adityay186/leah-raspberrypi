@@ -229,6 +229,8 @@ def predict_disease(intent_dict):
 
     for symp in result:
         final_symptoms_list.append(symptoms_dict[symp])
+    
+    print(final_symptoms_list)
 
     # Set the input symptoms to 1 in the preset dictionary
     for symptom in final_symptoms_list:
@@ -242,6 +244,6 @@ def predict_disease(intent_dict):
     clf = load("/home/leah/Documents/leah-final/tools/random_forest.joblib")
     result = clf.predict(df_test)
     print(result)
-    tts_obj.text = "Based on the information provided, I have completed an initial assessment of your symptoms. It appears that the most likely diagnosis is, " + str(result[0]) + ". It's important to consult a healthcare professional for a confirmed diagnosis and appropriate treatment."
+    tts_obj.text = "Based on the information provided, I have completed an initial assessment of your symptoms. It appears that the most likely diagnosis is, " + str(result[0]) + ". It's important to consult a healthcare professional for a confirmed diagnosis and appropriate-treatment."
     tts_obj.play()
     return result
