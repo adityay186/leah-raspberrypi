@@ -2,6 +2,7 @@ import pandas as pd
 import re
 import numpy as np
 from joblib import load
+import speech_recognition as sr
 
 symptoms_dict = {
     'itching': 'itching',
@@ -204,8 +205,19 @@ preset = {'itching': 0, 'skin_rash': 0, 'nodal_skin_eruptions': 0, 'continuous_s
           'blackheads': 0, 'scurring': 0, 'skin_peeling': 0, 'silver_like_dusting': 0, 'small_dents_in_nails': 0, 'inflammatory_nails': 0,
           'blister': 0, 'red_sore_around_nose': 0, 'yellow_crust_ooze': 0}
 
-def predict_disease():
-    input_text = "I have blister yellow crust ooze"
+tts_obj = None
+sr_obj = None
+
+def predict_disease(intent_dict):
+    sr_obj = intent_dict['sr_obj']
+    mic = sr.Microphone()
+    input_text = None
+
+    with mic as source:
+        print("Mention all symptoms : ")
+        audio = sr_obj.listen(source, phrase_time_limit = 7)
+        input_text = sr_obj.recognize_google(audio)
+    
     result = extract_symptoms(input_text)
 
     final_symptoms_list = []
@@ -226,5 +238,3 @@ def predict_disease():
     result = clf.predict(df_test)
     print(result)
     return result
-
-predict_disease()

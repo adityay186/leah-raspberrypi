@@ -170,6 +170,26 @@ daily_quotes_intent = IntentBuilder("daily_quotes")\
 engine.register_intent_parser(daily_quotes_intent)
 ##############################################################
 
+# DOCTOR INTENT
+sick_keywords = [
+    "doctor",
+    "sick",
+    "unwell",
+    "not well",
+    "not feeling good",
+    "not feeling well"
+]
+
+for sick_keyword in sick_keywords:
+    engine.register_entity(sick_keyword, "sickKeywords")
+
+doctor_intent = IntentBuilder("be_a_doctor")\
+    .require("sickKeywords")\
+    .build()
+
+engine.register_intent_parser(doctor_intent)
+##############################################################
+    
 # intent definition ends
 
 def get_intent(command, sr_obj, tts_obj):
