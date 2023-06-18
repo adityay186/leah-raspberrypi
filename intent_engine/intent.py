@@ -189,6 +189,31 @@ doctor_intent = IntentBuilder("be_a_doctor")\
 
 engine.register_intent_parser(doctor_intent)
 ##############################################################
+
+# HOME SECURITY INTENT
+home_security_keywords = [
+    "monitoring",
+    "monitor"
+]
+
+for hsk in home_security_keywords:
+    engine.register_entity(hsk, "homeSecurityKeywords")
+
+home_security_action = [
+    "start",
+    "stop"
+]
+
+for hsa in home_security_action:
+    engine.register_entity(hsa, "action")
+
+home_security_intent = IntentBuilder("home_security")\
+    .require("homeSecurityKeywords")\
+    .require("action")\
+    .build()
+
+engine.register_intent_parser(home_security_intent)
+##############################################################
     
 # intent definition ends
 

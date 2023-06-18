@@ -1,7 +1,10 @@
 import sys
 import pprint
+import subprocess
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
+
+home_security_file = "/home/leah/Documents/leah-final/skills/home_security.py"
 
 from color_print import print_green
 
@@ -65,6 +68,8 @@ def detect_wake_word():
 
         print("WAKE WORD ENGINE RUNNING..\n")
 
+        home_security_process = None
+
         while True:
             pcm = audio_stream.read(porcupine.frame_length)
             pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
@@ -104,11 +109,23 @@ def detect_wake_word():
                 print("       ↓       ")
                 pprint.pprint(intention)
                 print("\n")
-                res = process_intent(intention)
-                tts.text = res
-                print("Response ----------> ", res)
-                print("\n")
-                tts.play()
+                if intention['intent_type'] == "home_security":
+                    if intention['action'] == "start":
+                        if home_security_process is None or home_security_process.poll() is not None:
+                            home_security_process = subprocess.Popen(['python', home_security_file])
+                        else:
+                            print("Home Monitor is already running")
+                    else:
+                        if home_security_process is not None and home_security_process.poll() is None:
+                            home_security_process.terminate()
+                            home_security_process.wait()
+                            home_security_process = None
+                else:
+                    res = process_intent(intention)
+                    tts.text = res
+                    print("Response ----------> ", res)
+                    print("\n")
+                    tts.play()
 
                 
     finally:
