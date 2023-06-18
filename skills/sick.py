@@ -218,7 +218,7 @@ def predict_disease(intent_dict):
         print("Mention all symptoms : ")
         tts_obj.text = "tell me how do you feel?"
         tts_obj.play()
-        audio = sr_obj.listen(source, phrase_time_limit = 7)
+        audio = sr_obj.listen(source, phrase_time_limit = 10)
         input_text = sr_obj.recognize_google(audio)
         print("USER SAID : ", input_text)
         tts_obj.text = "okay, please wait while I use my experience to give a diagnosis. this will take some time"
