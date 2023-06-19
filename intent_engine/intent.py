@@ -72,6 +72,13 @@ news_keywords = [
 for nk in news_keywords:
     engine.register_entity(nk, "newsKeywords")
 
+news_action = [
+    "play"
+]
+
+for na in news_action:
+    engine.register_entity(na, "newsAction")
+
 news_cat = [
     'hindi',
     'english'
@@ -83,6 +90,7 @@ for nc in news_cat:
 # Define NewsIntent
 news_intent = IntentBuilder("news") \
     .require("newsKeywords") \
+    .require("newsAction")\
     .optionally("newsCategory")\
     .build()
 
@@ -213,6 +221,32 @@ home_security_intent = IntentBuilder("home_security")\
     .build()
 
 engine.register_intent_parser(home_security_intent)
+##############################################################
+
+# PLAY MUSIC INTENT
+play_music_keywords = [
+    "song",
+    "music"
+]
+
+for pmk in play_music_keywords:
+    engine.register_entity(pmk, "playMusicKeywords")
+
+play_music_action = [
+    "play"
+]
+
+for pma in play_music_action:
+    engine.register_entity(pma, "playMusicAction")
+
+engine.register_regex_entity("(?:song|music)\s+(?P<song_name>.+)")
+
+play_music_intent = IntentBuilder("play_music")\
+    .require("playMusicKeywords")\
+    .require("playMusicAction")\
+    .build()
+
+engine.register_intent_parser(play_music_intent)
 ##############################################################
     
 # intent definition ends

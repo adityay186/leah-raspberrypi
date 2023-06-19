@@ -10,6 +10,7 @@ from skills import send_message
 from skills import shazam
 from skills import cron_quotes
 from skills import sick
+from skills import music
 
 # Mapping of intent types to corresponding skill functions
 intent_handlers = {
@@ -20,7 +21,8 @@ intent_handlers = {
     'send_message' : send_message.send_message,
     'song_recognise' : shazam.what_song_is_this,
     'daily_quotes' : cron_quotes.flip,
-    'be_a_doctor' : sick.predict_disease
+    'be_a_doctor' : sick.predict_disease,
+    'play_music' : music.play_preview_from_query
     # Add more intent types and corresponding handlers as needed
 }
 
