@@ -20,11 +20,19 @@ async def search_track_and_get_preview_url(query):
 
 
 def play_preview_from_query(intent_dict):
-    query = intent_dict['song_name']
-    loop = asyncio.get_event_loop()
-    preview_url, artist_name = loop.run_until_complete(search_track_and_get_preview_url(query))
-    if preview_url:
-        print(f"Artist Name: {artist_name}")
-        PlayDirectFromURL(preview_url).play()
-    else:
-        print("No preview URL found for the given query.")
+    try:
+        query = intent_dict['song_name']
+        loop = asyncio.get_event_loop()
+        preview_url, artist_name = loop.run_until_complete(search_track_and_get_preview_url(query))
+        if preview_url:
+            print(f"Artist Name: {artist_name}")
+            PlayDirectFromURL(preview_url).play()
+        else:
+            print("No preview URL found for the given query.")
+    
+    except KeyboardInterrupt:
+        # User pressed Ctrl+C, handle the interruption gracefully
+        print("KeyboardInterrupt: Program interrupted by the user.")
+
+    except Exception as e:
+        print("An error occurred:", str(e))
