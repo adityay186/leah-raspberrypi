@@ -2,13 +2,30 @@ import requests
 import json
 import time
 import sys
+import datetime
 
 sys.path.append("/home/leah/Documents/leah-final/tools")
 
 from mpg123_player import play_mpg123
+from send_message import send_telegram_message
 
 val = None
 i = 1
+
+def get_current_datetime():
+    current_datetime = datetime.datetime.now()
+    
+    date_dict = {
+        'year': current_datetime.year,
+        'month': current_datetime.month,
+        'day': current_datetime.day,
+        'hour': current_datetime.strftime("%I"),
+        'minute': current_datetime.minute,
+        'second': current_datetime.second,
+        'am_pm': current_datetime.strftime("%p")
+    }
+    
+    return date_dict
 
 def motion():
     global val
@@ -40,6 +57,9 @@ def motion():
                 print(i, "Motion Detected:", val2)
                 val = val2
                 i += 1
+                tm = get_current_datetime()
+                message_string = "Leah Home Security :\n\n + Motion has been detected in your home on {}/{}/{} at {}:{}:{} {} ".format(tm['day'], tm['month'], tm['year'], tm['hour'], tm['minute'], tm['second'], tm['am_pm'])
+                send_telegram_message(message_string)
                 play_mpg123("/home/leah/Documents/leah-final/tools/motion_detected.mp3")
                 play_mpg123("/home/leah/Documents/leah-final/tools/burglar_alarm.mp3")
                 play_mpg123("/home/leah/Documents/leah-final/tools/take_action_immedietly.mp3")
