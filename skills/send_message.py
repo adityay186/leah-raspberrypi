@@ -41,7 +41,8 @@ def send_telegram_message(message):
     # Set the request parameters
     params = {
         'chat_id': chat_id,
-        'text': message
+        'text': message,
+        'parse_mode': 'MarkdownV2'
     }
 
     # Send the request
