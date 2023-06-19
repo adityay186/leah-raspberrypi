@@ -255,6 +255,32 @@ music_intent = IntentBuilder("play_music")\
 # Register the music intent parser
 engine.register_intent_parser(music_intent)
 ##############################################################
+
+# FACTS INTENT
+facts_keywords = [
+    "facts",
+    "fact"
+]
+
+for fk in facts_keywords:
+    engine.register_entity(fk, "factsKeywords")
+
+facts_action = [
+    "tell",
+    "get",
+    "give"
+]
+
+for fa in facts_action:
+    engine.register_entity(fa, "factsAction")
+
+facts_intent = IntentBuilder("get_facts")\
+    .require("factsKeywords")\
+    .require("factsAction")\
+    .build()
+
+engine.register_intent_parser(facts_intent)
+##############################################################
     
 # intent definition ends
 
