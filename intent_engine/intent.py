@@ -224,13 +224,13 @@ engine.register_intent_parser(home_security_intent)
 ##############################################################
 
 # PLAY MUSIC INTENT
-play_music_keywords = [
+music_keywords = [
     "song",
     "music"
 ]
 
-for pmk in play_music_keywords:
-    engine.register_entity(pmk, "playMusicKeywords")
+for mk in music_keywords:
+    engine.register_entity(mk, "musicKeyword")
 
 play_music_action = [
     "play"
@@ -239,15 +239,21 @@ play_music_action = [
 for pma in play_music_action:
     engine.register_entity(pma, "playMusicAction")
 
-engine.register_regex_entity("(?:song|music) (?P<song_name>.*)")
-#engine.register_regex_entity(r"(?i)(?:song|music)\s+(?P<song_name>.+)")
+# Define the regex pattern to extract the song name
+regex_pattern = r"(?:song|music)\s+(?P<song_name>.+)"
 
-play_music_intent = IntentBuilder("play_music")\
-    .require("playMusicKeywords")\
+# Register the regex entity for extracting the song name
+engine.register_regex_entity(regex_pattern)
+
+# Build the music intent
+music_intent = IntentBuilder("music")\
+    .require("musicKeyword")\
     .require("playMusicAction")\
+    .require("song_name")\
     .build()
 
-engine.register_intent_parser(play_music_intent)
+# Register the music intent parser
+engine.register_intent_parser(music_intent)
 ##############################################################
     
 # intent definition ends
