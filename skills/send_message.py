@@ -1,5 +1,4 @@
-import asyncio
-import telegram
+import requests
 import speech_recognition as sr
 
 tts_obj = None
@@ -13,7 +12,7 @@ def get_stt():
 
     with sr.Microphone() as source:
         print("speak the message .. ")
-        audio = sr_obj.listen(source, phrase_time_limit = 5)
+        audio = sr_obj.listen(source, phrase_time_limit=5)
     try:
         stt = sr_obj.recognize_google(audio)
         print(stt)
@@ -25,24 +24,37 @@ def get_stt():
         tts_obj.play()
         return er
     except sr.RequestError as e:
-        er2 = "could not fech results"
+        er2 = "could not fetch results"
         tts_obj.text = er2
         print(er2)
         tts_obj.play()
         return er2
 
-async def send_telegram_message(message):
+def send_telegram_message(message):
     # Set your bot token and chat ID
     bot_token = '6192792234:AAEiAxGK_qweROD-88YgnGWoWyAoahTE9P8'
     chat_id = '-960255198'
 
-    # Create a bot instance
-    bot = telegram.Bot(token=bot_token)
+    # Set the Telegram API URL
+    url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
 
-    # Send the message
-    await bot.send_message(chat_id=chat_id, text=message)
+    # Set the request parameters
+    params = {
+        'chat_id': chat_id,
+        'text': message
+    }
 
-    print("Telegram Message Delivered Successfully..")
+    # Send the request
+    response = requests.get(url, params=params)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        print("Telegram Message Delivered Successfully.")
+    else:
+        print("Failed to deliver Telegram message.")
+
+    # Print the response content (for debugging purposes)
+    print(response.text)
 
 def send_message(entities):
     global tts_obj
@@ -53,6 +65,6 @@ def send_message(entities):
     if 'sendMessageCategory' in entities:
         if entities['sendMessageCategory'] == 'telegram':
             message = get_stt()
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(send_telegram_message(message))
+            send_telegram_message(message)
             return "message sent successfully"
+
