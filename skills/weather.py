@@ -5,14 +5,14 @@ def get_weather(city):
     query = city['location']
 
     url = f'http://api.openweathermap.org/data/2.5/weather?q={query}&appid={api_key}&units=metric'
-    response = requests.get(url)
-    weather_data = response.json()
+    response = requests.get(url).json()
 
-    city_name = weather_data['name']
-    region = weather_data['sys']['country']
-    temperature = weather_data['main']['temp']
-    weather_description = weather_data['weather'][0]['description']
+    description = response['weather'][0]['description']
+    temp = response['main']['temp']
+    temp_min = response['main']['temp_min']
+    temp_max = response['main']['temp_max']
+    name = response['name']
 
-    result = f"In {city_name}, {region}, it's {temperature} degrees Celsius and {weather_description}."
+    result = f"In {name}, it's {temp} degrees Celsius and {description}, with a high of {temp_max} and a low of {temp_min}."
 
     return result
