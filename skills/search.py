@@ -1,30 +1,23 @@
 import requests
-import json
+
+def extract_first_sentence(text):
+    # Split the text into sentences using period as the delimiter
+    sentences = text.split('. ')
+    
+    # Extract the first sentence
+    first_sentence = sentences[0]
+    
+    return first_sentence
 
 def searchSummary(query):
-    url = "https://duckduckgo-duckduckgo-zero-click-info.p.rapidapi.com/"
-
-    querystring = {
-        "q": query['search_entity'],
-        "format": "json",
-        "skip_disambig": "1",
-        "no_redirect": "1",
-        "no_html": "1",
-        "callback": "process_duckduckgo"
-    }
-
-    headers = {
-        "X-RapidAPI-Key": "fb6c842de3msh06df12f2cc6bc9fp1b969bjsn7c5e3959f58e",
-        "X-RapidAPI-Host": "duckduckgo-duckduckgo-zero-click-info.p.rapidapi.com"
-    }
-
-    response = requests.get(url, headers=headers, params=querystring)
-    jsonp_response = response.content.decode("utf-8").replace("process_duckduckgo(", "")[:-2]
-    data = json.loads(jsonp_response)
-
-    if "Abstract" in data:
-        abstract = data["Abstract"]
-        first_sentence = abstract.split(".")[0] + "."
+    q = query['search_entity']
+    url = f"https://api.duckduckgo.com/?q={q}&format=json&pretty=1&no_html=1&skip_disambig=1"
+    response = requests.get(url)
+    data = response.json()
+    
+    if 'AbstractText' in data:
+        abstract_text = data['AbstractText']
+        first_sentence = extract_first_sentence(abstract_text)
         return first_sentence
     else:
-        return "Sorry, I could not understand that."
+        return None
