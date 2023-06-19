@@ -58,7 +58,7 @@ def motion():
                 val = val2
                 i += 1
                 tm = get_current_datetime()
-                message_string = "Leah Home Security :\n\n Motion has been detected in your home on *{}/{}/{}* at *{}:{}:{} {}* ".format(tm['day'], tm['month'], tm['year'], tm['hour'], tm['minute'], tm['second'], tm['am_pm'])
+                message_string = "Leah Home Security :\n\nMotion has been detected in your home on *{}/{}/{}* at *{}:{}:{} {}*\n\n*Take Action Immedietly!* ".format(tm['day'], tm['month'], tm['year'], tm['hour'], tm['minute'], tm['second'], tm['am_pm'])
                 send_telegram_message(message_string)
                 play_mpg123("/home/leah/Documents/leah-final/tools/motion_detected.mp3")
                 play_mpg123("/home/leah/Documents/leah-final/tools/burglar_alarm.mp3")
