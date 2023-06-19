@@ -239,7 +239,8 @@ play_music_action = [
 for pma in play_music_action:
     engine.register_entity(pma, "playMusicAction")
 
-engine.register_regex_entity("(?:song|music)\s+(?P<song_name>.+)")
+#engine.register_regex_entity("(?:in|of|at) (?P<location>.*)")
+engine.register_regex_entity(r"(?i)(?:song|music)\s+(?P<song_name>.+)")
 
 play_music_intent = IntentBuilder("play_music")\
     .require("playMusicKeywords")\
