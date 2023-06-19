@@ -246,7 +246,7 @@ regex_pattern = r"(?:song|music)\s+(?P<song_name>.+)"
 engine.register_regex_entity(regex_pattern)
 
 # Build the music intent
-music_intent = IntentBuilder("music")\
+music_intent = IntentBuilder("play_music")\
     .require("musicKeyword")\
     .require("playMusicAction")\
     .require("song_name")\
